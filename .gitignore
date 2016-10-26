@@ -1,0 +1,5 @@
+volumes/apps/*
+volumes/mysql/*
+volumes/logs/*
+!volumes/apps/.gitkeep
+!volumes/mysql/.gitkeep
