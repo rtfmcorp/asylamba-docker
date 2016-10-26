@@ -1,0 +1,57 @@
+# PHP-FPM
+phpfpm:
+    image: php:fpm
+    container_name: asylamba_phpfpm
+    volumes:
+        # applications
+        - "./volumes/apps:/srv/apps"
+    links:
+        - mysql:mysql
+    ports:
+        - "9000:9000"
+
+phpmyadmin:
+    image: nazarpc/phpmyadmin
+    container_name: asylamba_phpmyadmin
+    ports:
+        - "8082:80"
+    links:
+        - mysql:mysql
+
+# MYSQL Database
+mysql:
+    container_name: asylamba_mysql
+    build: mysql
+    environment:
+        MYSQL_DATABASES: asylamba_game
+        MYSQL_ROOT_PASSWORD: asylamba
+        MYSQL_HOST: localhost
+        MYSQL_USER: asylamba
+        MYSQL_PASSWORD: asylamba
+        MYSQL_DATABASES: asylamba_game
+    ports:
+        - "33306:3306"
+    volumes:
+        # mysql
+        - "./volumes/mysql:/var/lib/mysql"
+
+# Nginx webserver
+nginx:
+    container_name: asylamba_nginx
+    build: nginx
+    environment:
+        NGINX_ENABLED_VHOST: "asylamba.local,game.asylamba.local"
+    extra_hosts:
+        - "asylamba.local:127.0.0.1"
+        - "game.asylamba.local:127.0.0.1"
+    volumes:
+        # applications
+        - "./volumes/apps:/srv/apps"
+        # nginx
+        - "./volumes/html:/usr/share/nginx/html"
+        - "./volumes/logs/nginx:/var/log/nginx"
+    links:
+        - phpfpm:phpfpm
+    ports:
+        - "443:443"
+        - "80:80"

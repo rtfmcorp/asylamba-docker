@@ -1,0 +1,24 @@
+[mysqld]
+port = 3306
+default-storage-engine=INNODB
+init-connect = 'SET NAMES utf8'
+character-set-server = utf8
+collation-server = utf8_unicode_ci
+bind-address = 0.0.0.0
+skip-external-locking
+key_buffer_size = 16M
+max_allowed_packet = 16M
+thread_stack = 192K
+thread_cache_size = 8
+query_cache_limit = 1M
+query_cache_size = 16M
+expire_logs_days = 10
+max_binlog_size = 100M
+
+[mysqldump]
+quick
+quote-names
+max_allowed_packet = 16M
+
+[isamchk]
+check_buffer_size = 16M
