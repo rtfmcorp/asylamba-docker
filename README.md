@@ -3,7 +3,9 @@ Asylamba Docker
 
 This repository contains the Docker environment used to make the Asylamba project work.
 
-Docker is a tool which allows us to virtualize our environment, producing
+Docker is a tool which allows us to virtualize our environment, producing containers with stack elements inside.
+
+To learn more, go to the [Docker website](https://www.docker.com/).
 
 ## Requirements
 
