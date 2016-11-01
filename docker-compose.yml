@@ -1,6 +1,6 @@
 # PHP-FPM
 phpfpm:
-    image: php:fpm
+    build: phpfpm
     container_name: asylamba_phpfpm
     volumes:
         # applications
