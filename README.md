@@ -67,8 +67,8 @@ If you want to use hostnames, the default ones are ```http://game.asylamba.local
 To enable it on your computer and access it with your browser, you must add these lines to your ```hosts``` file :
 
 ```
-127.0.0.1 game.asylamba.com
-127.0.0.1 asylamba.com
+127.0.0.1 game.asylamba.local
+127.0.0.1 asylamba.local
 ```
 
 This file is located in ```C:\Windows\System32\drivers\etc\hosts``` on Windows and ```/etc/hosts``` on Linux.
