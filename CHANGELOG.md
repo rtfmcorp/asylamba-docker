@@ -2,6 +2,7 @@
 ### Added
 - Custom Dockerfile for PHP-FPM
 - PDO MySQL extension for PHP
+- Mcrypt extension for PHP
 
 ## [0.1.0] - 2016-10-26
 ### Added
