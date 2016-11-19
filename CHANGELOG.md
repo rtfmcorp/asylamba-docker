@@ -3,6 +3,7 @@
 - Custom Dockerfile for PHP-FPM
 - PDO MySQL extension for PHP
 - Mcrypt extension for PHP
+- Log write permissions for PHP-FPM
 
 ## [0.1.0] - 2016-10-26
 ### Added
