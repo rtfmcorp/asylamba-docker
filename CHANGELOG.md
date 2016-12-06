@@ -1,3 +1,7 @@
+## [Unreleased]
+### Fixed
+- Fix special characters in PHP-FPM and NGINX entrypoint files
+
 ## [0.1.1] - 2016-11-19
 ### Added
 - Custom Dockerfile for PHP-FPM
