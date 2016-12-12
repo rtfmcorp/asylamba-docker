@@ -1,5 +1,11 @@
 ## [Unreleased]
+### Added
+- Blackfire Agent container
+- Blackfire Probe in PHP-FPM container
+- Blackfire usage documentation
+
 ### Fixed
+- Fix nginx APT upgrade
 - Fix special characters in PHP-FPM and NGINX entrypoint files
 
 ## [0.1.1] - 2016-11-19
