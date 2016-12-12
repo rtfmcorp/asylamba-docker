@@ -7,8 +7,21 @@ phpfpm:
         - "./volumes/apps:/srv/apps"
     links:
         - mysql:mysql
+        - blackfire:blackfire
     ports:
         - "9000:9000"
+
+blackfire:
+    container_name: asylamba_blackfire
+    image: blackfire/blackfire
+    environment:
+        # Exposes the host BLACKFIRE_SERVER_ID and TOKEN environment variables.
+        - BLACKFIRE_CLIENT_ID
+        - BLACKFIRE_CLIENT_TOKEN
+        - BLACKFIRE_SERVER_ID
+        - BLACKFIRE_SERVER_TOKEN
+    ports:
+        - "8707:8707"
 
 phpmyadmin:
     image: nazarpc/phpmyadmin
