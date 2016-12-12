@@ -75,6 +75,37 @@ This file is located in ```C:\Windows\System32\drivers\etc\hosts``` on Windows a
 
 It should work properly by now :) !
 
+## Blackfire
+
+Blackfire is a profiling tool allowing us to analyze the behavior and performances of the application.
+
+To use it, you must first get an account on https://blackfire.io and then set the following environment variables :
+
+```
+BLACKFIRE_CLIENT_ID
+BLACKFIRE_CLIENT_TOKEN
+BLACKFIRE_SERVER_ID
+BLACKFIRE_SERVER_TOKEN
+```
+
+An export shortcut with the values associated to your account are available [here](https://blackfire.io/docs/integrations/docker).
+
+To run a profile, you can use the following command :
+
+```sh
+docker exec asylamba_blackfire blackfire curl --proxy http://$NGINX_CONTAINER_IP:80 http://game.asylamba.local/
+```
+
+You must replace the ``$NGINX_CONTAINER_IP`` variable with the right value.
+
+To get it, fetch the IP address of your NGINX container with the following command :
+
+```sh
+docker inspect asylamba_nginx | grep IPAddress
+```
+
+Now you can launch the blackfire command and the profile shall appear in your Blackfire dashboard.
+
 ## Contribute
 
 Any feedback and suggestion is welcome, feel free to contact us !
