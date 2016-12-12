@@ -1,4 +1,4 @@
-## [Unreleased]
+## [0.1.2] - 2016-12-13
 ### Added
 - Blackfire Agent container
 - Blackfire Probe in PHP-FPM container
