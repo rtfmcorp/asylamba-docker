@@ -32,7 +32,7 @@ server {
     deny all;
   }
 
-  location ^~ /public/log/stats/ {
+  location ~ /public/log/stats/ {
     deny all;
   }
 }
