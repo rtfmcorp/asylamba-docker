@@ -3,3 +3,5 @@ volumes/mysql/*
 volumes/logs/*
 !volumes/apps/.gitkeep
 !volumes/mysql/.gitkeep
+applications/asylamba-game/archives/*
+!applications/asylamba-game/archives/.gitkeep
