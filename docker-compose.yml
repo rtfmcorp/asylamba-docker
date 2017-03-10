@@ -6,6 +6,15 @@ networks:
             config:
                 - subnet: 172.20.0.0/16
 services:
+    game:
+        build: applications/asylamba-game
+        container_name: asylamba_game
+        environment:
+            - DEPLOY_SOURCES=false
+        volumes:
+            - "./volumes/apps:/srv/apps"
+        networks:
+            - asylamba
     # PHP-FPM
     phpfpm:
         build: phpfpm
