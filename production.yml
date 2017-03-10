@@ -1,0 +1,76 @@
+version: "3"
+networks:
+    asylamba:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.20.0.0/16
+services:
+    game:
+        image: asylamba/game
+        container_name: asylamba_game
+        environment:
+            - DEPLOY_SOURCES=true
+        volumes:
+            - "./volumes/apps:/srv/apps"
+        networks:
+            - asylamba
+    # PHP-FPM
+    phpfpm:
+        image: asylamba/phpfpm
+        container_name: asylamba_phpfpm
+        volumes:
+            # applications
+            - "./volumes/apps:/srv/apps"
+        networks:
+            - asylamba
+        ports:
+            - "9000:9000"
+
+    phpmyadmin:
+        image: asylamba/phpmyadmin
+        container_name: asylamba_phpmyadmin
+        networks:
+            - asylamba
+        ports:
+            - "8082:80"
+
+    # MYSQL Database
+    mysql:
+        container_name: asylamba_mysql
+        image: asylamba/mysql
+        environment:
+            MYSQL_DATABASES: asylamba_game
+            MYSQL_ROOT_PASSWORD: asylamba
+            MYSQL_HOST: localhost
+            MYSQL_USER: asylamba
+            MYSQL_PASSWORD: asylamba
+            MYSQL_DATABASES: asylamba_game
+        networks:
+            - asylamba
+        ports:
+            - "33306:3306"
+        volumes:
+            # mysql
+            - "./volumes/mysql:/var/lib/mysql"
+
+    # Nginx webserver
+    nginx:
+        container_name: asylamba_nginx
+        image: asylamba/nginx
+        environment:
+            NGINX_ENABLED_VHOST: "asylamba.local,game.asylamba.local"
+        extra_hosts:
+            - "asylamba.local:127.0.0.1"
+            - "game.asylamba.local:127.0.0.1"
+        volumes:
+            # applications
+            - "./volumes/apps:/srv/apps"
+            # nginx
+            - "./volumes/html:/usr/share/nginx/html"
+            - "./volumes/logs/nginx:/var/log/nginx"
+        networks:
+            - asylamba
+        ports:
+            - "443:443"
+            - "80:80"
