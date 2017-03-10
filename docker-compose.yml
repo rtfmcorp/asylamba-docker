@@ -1,70 +1,81 @@
-# PHP-FPM
-phpfpm:
-    build: phpfpm
-    container_name: asylamba_phpfpm
-    volumes:
-        # applications
-        - "./volumes/apps:/srv/apps"
-    links:
-        - mysql:mysql
-        - blackfire:blackfire
-    ports:
-        - "9000:9000"
+version: "3"
+networks:
+    asylamba:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.20.0.0/16
+services:
+    # PHP-FPM
+    phpfpm:
+        build: phpfpm
+        container_name: asylamba_phpfpm
+        volumes:
+            # applications
+            - "./volumes/apps:/srv/apps"
+        networks:
+            - asylamba
+        ports:
+            - "9000:9000"
 
-blackfire:
-    container_name: asylamba_blackfire
-    image: blackfire/blackfire
-    environment:
-        # Exposes the host BLACKFIRE_SERVER_ID and TOKEN environment variables.
-        - BLACKFIRE_CLIENT_ID
-        - BLACKFIRE_CLIENT_TOKEN
-        - BLACKFIRE_SERVER_ID
-        - BLACKFIRE_SERVER_TOKEN
-    ports:
-        - "8707:8707"
+    blackfire:
+        container_name: asylamba_blackfire
+        image: blackfire/blackfire
+        environment:
+            # Exposes the host BLACKFIRE_SERVER_ID and TOKEN environment variables.
+            - BLACKFIRE_CLIENT_ID
+            - BLACKFIRE_CLIENT_TOKEN
+            - BLACKFIRE_SERVER_ID
+            - BLACKFIRE_SERVER_TOKEN
+        networks:
+            - asylamba
+        ports:
+            - "8707:8707"
 
-phpmyadmin:
-    image: nazarpc/phpmyadmin
-    container_name: asylamba_phpmyadmin
-    ports:
-        - "8082:80"
-    links:
-        - mysql:mysql
+    phpmyadmin:
+        image: nazarpc/phpmyadmin
+        container_name: asylamba_phpmyadmin
+        networks:
+            - asylamba
+        ports:
+            - "8082:80"
 
-# MYSQL Database
-mysql:
-    container_name: asylamba_mysql
-    build: mysql
-    environment:
-        MYSQL_DATABASES: asylamba_game
-        MYSQL_ROOT_PASSWORD: asylamba
-        MYSQL_HOST: localhost
-        MYSQL_USER: asylamba
-        MYSQL_PASSWORD: asylamba
-        MYSQL_DATABASES: asylamba_game
-    ports:
-        - "33306:3306"
-    volumes:
-        # mysql
-        - "./volumes/mysql:/var/lib/mysql"
+    # MYSQL Database
+    mysql:
+        container_name: asylamba_mysql
+        build: mysql
+        environment:
+            MYSQL_DATABASES: asylamba_game
+            MYSQL_ROOT_PASSWORD: asylamba
+            MYSQL_HOST: localhost
+            MYSQL_USER: asylamba
+            MYSQL_PASSWORD: asylamba
+            MYSQL_DATABASES: asylamba_game
+        networks:
+            - asylamba
+        ports:
+            - "33306:3306"
+        volumes:
+            # mysql
+            - "./volumes/mysql:/var/lib/mysql"
 
-# Nginx webserver
-nginx:
-    container_name: asylamba_nginx
-    build: nginx
-    environment:
-        NGINX_ENABLED_VHOST: "asylamba.local,game.asylamba.local"
-    extra_hosts:
-        - "asylamba.local:127.0.0.1"
-        - "game.asylamba.local:127.0.0.1"
-    volumes:
-        # applications
-        - "./volumes/apps:/srv/apps"
-        # nginx
-        - "./volumes/html:/usr/share/nginx/html"
-        - "./volumes/logs/nginx:/var/log/nginx"
-    links:
-        - phpfpm:phpfpm
-    ports:
-        - "443:443"
-        - "80:80"
+    # Nginx webserver
+    nginx:
+        container_name: asylamba_nginx
+        build: nginx
+        environment:
+            NGINX_ENABLED_VHOST: "asylamba.local,game.asylamba.local"
+        extra_hosts:
+            - "asylamba.local:127.0.0.1"
+            - "game.asylamba.local:127.0.0.1"
+        volumes:
+            # applications
+            - "./volumes/apps:/srv/apps"
+            # nginx
+            - "./volumes/html:/usr/share/nginx/html"
+            - "./volumes/logs/nginx:/var/log/nginx"
+        networks:
+            - asylamba
+        ports:
+            - "443:443"
+            - "80:80"
