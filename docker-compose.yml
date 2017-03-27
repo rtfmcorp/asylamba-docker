@@ -10,9 +10,12 @@ services:
         build: applications/asylamba-game
         container_name: asylamba_game
         environment:
+            - ASYLAMBA_GAME_PORT=9999
             - DEPLOY_SOURCES=false
         volumes:
             - "./volumes/apps:/srv/apps"
+        ports:
+            - "9999:9999"
         networks:
             - asylamba
     # PHP-FPM
@@ -73,6 +76,7 @@ services:
         container_name: asylamba_nginx
         build: nginx
         environment:
+            ASYLAMBA_GAME_PORT: 9999
             NGINX_ENABLED_VHOST: "asylamba.local,game.asylamba.local"
         extra_hosts:
             - "asylamba.local:127.0.0.1"
