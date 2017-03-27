@@ -18,18 +18,7 @@ services:
             - "9999:9999"
         networks:
             - asylamba
-    # PHP-FPM
-    phpfpm:
-        build: phpfpm
-        container_name: asylamba_phpfpm
-        volumes:
-            # applications
-            - "./volumes/apps:/srv/apps"
-        networks:
-            - asylamba
-        ports:
-            - "9000:9000"
-
+    
     blackfire:
         container_name: asylamba_blackfire
         image: blackfire/blackfire
