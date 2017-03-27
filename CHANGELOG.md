@@ -1,3 +1,14 @@
+## [Unreleased]
+### Added
+- Game applicative container
+
+### Changed
+- Nginx is now a reverse proxy for the game
+- Static files are served directly by Nginx
+
+### Removed
+- PHP-FPM container
+
 ## [0.1.2] - 2016-12-13
 ### Added
 - Blackfire Agent container

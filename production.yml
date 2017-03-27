@@ -7,34 +7,28 @@ networks:
                 - subnet: 172.20.0.0/16
 services:
     game:
-        build: applications/asylamba-game
+        image: asylamba/game
         container_name: asylamba_game
         environment:
-            - ASYLAMBA_GAME_PORT=9999
-            - DEPLOY_SOURCES=false
+            - DEPLOY_SOURCES=true
         volumes:
             - "./volumes/apps:/srv/apps"
-        ports:
-            - "9999:9999"
         networks:
             - asylamba
-    
-    blackfire:
-        container_name: asylamba_blackfire
-        image: blackfire/blackfire
-        environment:
-            # Exposes the host BLACKFIRE_SERVER_ID and TOKEN environment variables.
-            - BLACKFIRE_CLIENT_ID
-            - BLACKFIRE_CLIENT_TOKEN
-            - BLACKFIRE_SERVER_ID
-            - BLACKFIRE_SERVER_TOKEN
+    # PHP-FPM
+    phpfpm:
+        image: asylamba/phpfpm
+        container_name: asylamba_phpfpm
+        volumes:
+            # applications
+            - "./volumes/apps:/srv/apps"
         networks:
             - asylamba
         ports:
-            - "8707:8707"
+            - "9000:9000"
 
     phpmyadmin:
-        image: nazarpc/phpmyadmin
+        image: asylamba/phpmyadmin
         container_name: asylamba_phpmyadmin
         networks:
             - asylamba
@@ -44,7 +38,7 @@ services:
     # MYSQL Database
     mysql:
         container_name: asylamba_mysql
-        build: mysql
+        image: asylamba/mysql
         environment:
             MYSQL_DATABASES: asylamba_game
             MYSQL_ROOT_PASSWORD: asylamba
@@ -63,9 +57,8 @@ services:
     # Nginx webserver
     nginx:
         container_name: asylamba_nginx
-        build: nginx
+        image: asylamba/nginx
         environment:
-            ASYLAMBA_GAME_PORT: 9999
             NGINX_ENABLED_VHOST: "asylamba.local,game.asylamba.local"
         extra_hosts:
             - "asylamba.local:127.0.0.1"
