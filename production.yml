@@ -9,6 +9,9 @@ services:
     game:
         image: asylamba/game
         container_name: asylamba_game
+        restart: always
+        depends_on:
+            - mysql
         environment:
             - DEPLOY_SOURCES=true
         volumes:
@@ -58,11 +61,12 @@ services:
     nginx:
         container_name: asylamba_nginx
         image: asylamba/nginx
+        depends_on:
+            - game
         environment:
-            NGINX_ENABLED_VHOST: "asylamba.local,game.asylamba.local"
+            NGINX_ENABLED_VHOST: "asylamba-preprod.cloudapp.net"
         extra_hosts:
-            - "asylamba.local:127.0.0.1"
-            - "game.asylamba.local:127.0.0.1"
+            - "asylamba-preprod.cloudapp.net:127.0.0.1"
         volumes:
             # applications
             - "./volumes/apps:/srv/apps"
