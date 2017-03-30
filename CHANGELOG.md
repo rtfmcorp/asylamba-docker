@@ -1,6 +1,7 @@
-## [Unreleased]
+## [0.1.3] - 2017-03-30
 ### Added
 - Game applicative container
+- Virtual host for production environment
 
 ### Changed
 - Nginx is now a reverse proxy for the game
