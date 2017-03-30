@@ -13,9 +13,12 @@ services:
         depends_on:
             - mysql
         environment:
-            - DEPLOY_SOURCES=true
+            - ASYLAMBA_GAME_PORT=9999
+            - DEPLOY_SOURCES=false
         volumes:
             - "./volumes/apps:/srv/apps"
+        ports:
+            - "9999:9999"
         networks:
             - asylamba
 
