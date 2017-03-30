@@ -9,6 +9,8 @@ services:
     game:
         build: applications/asylamba-game
         container_name: asylamba_game
+        depends_on:
+            - mysql
         environment:
             - ASYLAMBA_GAME_PORT=9999
             - DEPLOY_SOURCES=false
@@ -18,7 +20,7 @@ services:
             - "9999:9999"
         networks:
             - asylamba
-    
+
     blackfire:
         container_name: asylamba_blackfire
         image: blackfire/blackfire
@@ -64,6 +66,8 @@ services:
     nginx:
         container_name: asylamba_nginx
         build: nginx
+        depends_on:
+            - game
         environment:
             ASYLAMBA_GAME_PORT: 9999
             NGINX_ENABLED_VHOST: "asylamba.local,game.asylamba.local"
