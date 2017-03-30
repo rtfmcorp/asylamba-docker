@@ -18,20 +18,9 @@ services:
             - "./volumes/apps:/srv/apps"
         networks:
             - asylamba
-    # PHP-FPM
-    phpfpm:
-        image: asylamba/phpfpm
-        container_name: asylamba_phpfpm
-        volumes:
-            # applications
-            - "./volumes/apps:/srv/apps"
-        networks:
-            - asylamba
-        ports:
-            - "9000:9000"
 
     phpmyadmin:
-        image: asylamba/phpmyadmin
+        image: nazarpc/phpmyadmin
         container_name: asylamba_phpmyadmin
         networks:
             - asylamba
