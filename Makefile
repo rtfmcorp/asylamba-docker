@@ -27,6 +27,7 @@ build-game:
 	tar -C volumes/apps -cvzf applications/asylamba-game/archives/asylamba_game.tar.gz asylamba-game --exclude .git
 	docker-compose build game
 	docker tag asylamba_game asylamba/game:$(version)
+	docker tag asylamba_game asylamba/game:latest
 	docker push docker.io/asylamba/game
 
 deploy-game:
