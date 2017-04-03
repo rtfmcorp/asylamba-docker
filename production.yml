@@ -14,7 +14,7 @@ services:
             - mysql
         environment:
             - ASYLAMBA_GAME_PORT=9999
-            - DEPLOY_SOURCES=false
+            - DEPLOY_SOURCES=true
         volumes:
             - "./volumes/apps:/srv/apps"
         ports:
