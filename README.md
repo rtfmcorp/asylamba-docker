@@ -89,7 +89,7 @@ make version=1.1.12 build-game
 **The less short way**
 
 ```
-tar -C volumes/apps -cvzf applications/asylamba-game/archives/asylamba_game.tar.gz asylamba-game --exclude .git
+tar -C volumes/apps -cvzf applications/asylamba-game/archives/asylamba_game.tar.gz asylamba-game --exclude .git --exclude *.log
 docker-compose build game
 docker tag asylamba_game asylamba/game:1.1.12
 docker tag asylamba_game asylamba/game:latest

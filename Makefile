@@ -49,7 +49,7 @@ build-all: build-game
 
 build-game:
 
-	tar -C volumes/apps -cvzf applications/asylamba-game/archives/asylamba_game.tar.gz asylamba-game --exclude .git
+	tar -C volumes/apps -cvzf applications/asylamba-game/archives/asylamba_game.tar.gz asylamba-game --exclude .git --exclude *.log
 	docker-compose build game
 	docker tag asylamba_game asylamba/game:$(version)
 	docker tag asylamba_game asylamba/game:latest
