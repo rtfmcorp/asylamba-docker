@@ -4,6 +4,10 @@
 - Production handling commands
 - Production deployment documentation
 
+### Changed
+- Exclude logs from game archive
+- Increase session lifetime for PhpMyAdmin
+
 ## [0.1.3] - 2017-03-30
 ### Added
 - Game applicative container

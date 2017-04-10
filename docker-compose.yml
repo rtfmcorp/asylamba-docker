@@ -39,6 +39,8 @@ services:
     phpmyadmin:
         container_name: asylamba_phpmyadmin
         image: nazarpc/phpmyadmin
+        environment:
+            SESSION_TIMEOUT: 86400
         networks:
             - asylamba
         ports:
