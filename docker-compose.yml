@@ -7,8 +7,9 @@ networks:
                 - subnet: 172.20.0.0/16
 services:
     game:
-        build: applications/asylamba-game
         container_name: asylamba_game
+        build: applications/asylamba-game
+        image: asylamba/game
         depends_on:
             - mysql
         environment:
@@ -36,8 +37,8 @@ services:
             - "8707:8707"
 
     phpmyadmin:
-        image: nazarpc/phpmyadmin
         container_name: asylamba_phpmyadmin
+        image: nazarpc/phpmyadmin
         networks:
             - asylamba
         ports:
@@ -47,6 +48,7 @@ services:
     mysql:
         container_name: asylamba_mysql
         build: mysql
+        image: asylamba/mysql
         environment:
             MYSQL_DATABASES: asylamba_game
             MYSQL_ROOT_PASSWORD: asylamba
@@ -66,6 +68,7 @@ services:
     nginx:
         container_name: asylamba_nginx
         build: nginx
+        image: asylamba/nginx
         depends_on:
             - game
         environment:
