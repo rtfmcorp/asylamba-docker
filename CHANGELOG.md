@@ -1,4 +1,4 @@
-## [Unreleased]
+## [0.1.4] - 2017-04-10
 ### Added
 - Deployment command for Docker registry
 - Production handling commands
