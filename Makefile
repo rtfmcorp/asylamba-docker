@@ -28,7 +28,7 @@ build-game:
 	docker-compose build game
 	docker tag asylamba_game asylamba/game:$(version)
 	docker tag asylamba_game asylamba/game:latest
-	docker push docker.io/asylamba/game
+	docker push docker.io/asylamba/game:$(version)
 
 deploy-game:
 
