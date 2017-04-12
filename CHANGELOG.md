@@ -1,3 +1,7 @@
+## [Unreleased]
+### Changed
+- The game container version is now the game sources git tag
+
 ## [0.1.4] - 2017-04-10
 ### Added
 - Deployment command for Docker registry
