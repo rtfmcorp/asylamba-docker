@@ -17,6 +17,7 @@ services:
             - DEPLOY_SOURCES=false
         volumes:
             - "./volumes/apps:/srv/apps"
+            - "./volumes/logs/game:/srv/logs"
         ports:
             - "9999:9999"
         networks:
