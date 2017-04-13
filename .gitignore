@@ -1,6 +1,6 @@
 volumes/apps/*
 volumes/mysql/*
-volumes/logs/*
+*.log
 !volumes/apps/.gitkeep
 !volumes/mysql/.gitkeep
 applications/asylamba-game/archives/*
