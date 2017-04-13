@@ -1,6 +1,12 @@
 ## [Unreleased]
+### Added
+- Game logs in the volumes
+
 ### Changed
 - The game container version is now the game sources git tag
+
+### Fixed
+- Line endings for MySQL container entrypoint
 
 ## [0.1.4] - 2017-04-10
 ### Added
