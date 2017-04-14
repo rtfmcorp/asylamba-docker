@@ -7,6 +7,7 @@
 
 ### Fixed
 - Line endings for MySQL container entrypoint
+- Client abort in Nginx virtual host
 
 ## [0.1.4] - 2017-04-10
 ### Added
