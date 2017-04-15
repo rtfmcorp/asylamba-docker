@@ -5,6 +5,7 @@ networks:
         ipam:
             config:
                 - subnet: 172.20.0.0/16
+
 services:
     game:
         container_name: asylamba_game
@@ -21,7 +22,8 @@ services:
         ports:
             - "9999:9999"
         networks:
-            - asylamba
+            asylamba:
+                ipv4_address: 172.20.0.2
 
     blackfire:
         container_name: asylamba_blackfire
@@ -33,7 +35,8 @@ services:
             - BLACKFIRE_SERVER_ID
             - BLACKFIRE_SERVER_TOKEN
         networks:
-            - asylamba
+            asylamba:
+                ipv4_address: 172.20.0.3
         ports:
             - "8707:8707"
 
@@ -43,7 +46,8 @@ services:
         environment:
             SESSION_TIMEOUT: 86400
         networks:
-            - asylamba
+            asylamba:
+                ipv4_address: 172.20.0.4
         ports:
             - "8082:80"
 
@@ -60,7 +64,8 @@ services:
             MYSQL_PASSWORD: asylamba
             MYSQL_DATABASES: asylamba_game
         networks:
-            - asylamba
+            asylamba:
+                ipv4_address: 172.20.0.5
         ports:
             - "33306:3306"
         volumes:
@@ -88,7 +93,8 @@ services:
             - "./volumes/html:/usr/share/nginx/html"
             - "./volumes/logs/nginx:/var/log/nginx"
         networks:
-            - asylamba
+            asylamba:
+                ipv4_address: 172.20.0.6
         ports:
             - "443:443"
             - "80:80"

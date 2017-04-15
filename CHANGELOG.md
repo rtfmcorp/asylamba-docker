@@ -1,6 +1,7 @@
 ## [Unreleased]
 ### Added
 - Game logs in the volumes
+- Fix IP addresses for the local containers
 
 ### Changed
 - The game container version is now the game sources git tag
