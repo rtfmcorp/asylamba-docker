@@ -6,6 +6,9 @@
 ### Changed
 - The game container version is now the game sources git tag
 
+### Removed
+- Network subnet for production containers
+
 ### Fixed
 - Line endings for MySQL container entrypoint
 - Client abort in Nginx virtual host
