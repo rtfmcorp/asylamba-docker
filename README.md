@@ -36,19 +36,21 @@ The shortcut command for this is :
 make install
 ```
 
-To stop the containers, use ```docker-compose stop``` or ```make stop```.
+To stop the containers, use `docker-compose stop` or `make stop`.
 
-To remove the containers (you would need to do it in case of strange problems or build new versions), use ```docker-compose rm``` or ```make rm```.
+To remove the containers (you would need to do it in case of strange problems or build new versions), use `docker-compose rm` or `make rm`.
 
-To see the containers status, use ```docker-compose ps``` or ```make status``` shortcut command.
+To see the containers status, use `docker-compose ps` or `make status` shortcut command.
+
+To see logs related to a container, use `docker logs [container name]` (eg. `docker logs asylamba_game`).
 
 ### PhpMyAdmin
 
-To access PhpMyAdmin, run your containers and then access to ```127.0.0.1:8082``` in your browser.
+To access PhpMyAdmin, run your containers and then access to `127.0.0.1:8082` in your browser.
 
-The root credentials are ```root:asylamba``` ("asylamba" is the password).
+The root credentials are `root:asylamba` ("asylamba" is the password).
 
-The other available user is ```asylamba:asylamba```.
+The other available user is `asylamba:asylamba`.
 
 ### Applications
 
@@ -59,18 +61,18 @@ cd volumes/apps
 git clone git@github.com:rtfmcorp/asylamba-game.git
 ```
 
-You can access the game with ```127.0.0.1``` in your browser.
+You can access the game with `127.0.0.1` in your browser.
 
-If you want to use hostnames, the default ones are ```http://game.asylamba.local``` and ```http://asylamba.local```.
+If you want to use hostnames, the default ones are `http://game.asylamba.local` and `http://asylamba.local`.
 
-To enable it on your computer and access it with your browser, you must add these lines to your ```hosts``` file :
+To enable it on your computer and access it with your browser, you must add these lines to your `hosts` file :
 
 ```
 127.0.0.1 game.asylamba.local
 127.0.0.1 asylamba.local
 ```
 
-This file is located in ```C:\Windows\System32\drivers\etc\hosts``` on Windows and ```/etc/hosts``` on Linux.
+This file is located in `C:\Windows\System32\drivers\etc\hosts` on Windows and `/etc/hosts` on Linux.
 
 It should work properly by now :) !
 
