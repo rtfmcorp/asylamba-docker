@@ -1,4 +1,4 @@
-## [Unreleased]
+## [0.1.5] - 2017-05-14
 ### Added
 - Game logs in the volumes
 - Fix IP addresses for the local containers
