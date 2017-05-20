@@ -1,3 +1,7 @@
+## [Unreleased]
+### Added
+- Environment variables file
+
 ## [0.1.5] - 2017-05-14
 ### Added
 - Game logs in the volumes
