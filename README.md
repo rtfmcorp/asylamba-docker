@@ -21,6 +21,47 @@ git clone git@github.com:rtfmcorp/asylamba-docker.git
 cd asylamba-docker
 ```
 
+Now you have to copy the dist file for environment variables. This environment variables contain sensitive informations about security aspects of the game, like database access or game admin scripts access.
+
+```
+cp asylamba.dist.env asylamba.env
+```
+
+You can keep the default values in a local environment, but we highly recommend that you set more complex values in a remote environment.
+
+Here is the documentation about the values :
+
+```
+# All variables prefixed with ASYLAMBA_ will be used as parameters in the game container
+# For more informations, please refer to the game documentation
+
+# The DNS of the game, for static files and Ajax calls
+ASYLAMBA_SERVER_HOST=game.asylamba.local
+# The port of the game server. Please be sure it is an open port of the game container
+ASYLAMBA_SERVER_PORT=9999
+# The host of the database server. Could be an IP address
+ASYLAMBA_DATABASE_HOST=asylamba_mysql
+
+ASYLAMBA_DATABASE_NAME=asylamba_game
+ASYLAMBA_DATABASE_USER=root
+ASYLAMBA_DATABASE_PASSWORD=asylamba
+# Security key used in the admin URL. It must be changed in remote environments
+ASYLAMBA_SECURITY_KEY=123456
+
+# This is used to tell Nginx which virtual host it must enable
+NGINX_ENABLED_VHOST=asylamba.local,game.asylamba.local,asylamba-preprod.cloudapp.net,s14.asylamba.com
+# This one is important. If set to true, it will copy the game version in the built game image.
+# If set to true, THIS WILL ERASE THE PREVIOUS CODE; DO NOT SET IT TO TRUE ON LOCAL ENV.
+# Set it to true in remote environments, it will deploy the code contained in the new images you will push to production.
+DEPLOY_SOURCES=false
+
+MYSQL_DATABASES: asylamba_game
+MYSQL_ROOT_PASSWORD: asylamba
+MYSQL_HOST: localhost
+MYSQL_USER: asylamba
+MYSQL_PASSWORD: asylamba
+```
+
 ## Usage
 
 To make the containers run, you can use the following commands :
