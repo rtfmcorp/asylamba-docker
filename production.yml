@@ -10,9 +10,8 @@ services:
         restart: always
         depends_on:
             - mysql
-        environment:
-            - ASYLAMBA_GAME_PORT=9999
-            - DEPLOY_SOURCES=true
+        env_file:
+            - asylamba.env
         volumes:
             - "./volumes/apps:/srv/apps"
             - "./volumes/logs/game:/srv/logs"
@@ -33,13 +32,8 @@ services:
     mysql:
         container_name: asylamba_mysql
         image: asylamba/mysql
-        environment:
-            MYSQL_DATABASES: asylamba_game
-            MYSQL_ROOT_PASSWORD: asylamba
-            MYSQL_HOST: localhost
-            MYSQL_USER: asylamba
-            MYSQL_PASSWORD: asylamba
-            MYSQL_DATABASES: asylamba_game
+        env_file:
+            - asylamba.env
         networks:
             - asylamba
         ports:
@@ -54,8 +48,8 @@ services:
         image: asylamba/nginx
         depends_on:
             - game
-        environment:
-            NGINX_ENABLED_VHOST: "asylamba-preprod.cloudapp.net,s14.asylamba.com"
+        env_file:
+            - asylamba.env
         extra_hosts:
             - "asylamba-preprod.cloudapp.net:127.0.0.1"
             - "s14.asylamba.com:127.0.0.1"
