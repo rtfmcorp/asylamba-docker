@@ -1,0 +1,3 @@
+0 3 * * * /usr/bin/curl http://127.0.0.1:${ASYLAMBA_SERVER_PORT}/script/key-${ASYLAMBA_SECURITY_SCRIPT_KEY}/a-cron_playerranking >> /var/log/cron.log 2>&1
+5 3 * * * /usr/bin/curl http://127.0.0.1:${ASYLAMBA_SERVER_PORT}/script/key-${ASYLAMBA_SECURITY_SCRIPT_KEY}/a-cron_factionranking >> /var/log/cron.log 2>&1
+10 3 * * * /usr/bin/curl http://127.0.0.1:${ASYLAMBA_SERVER_PORT}/script/key-${ASYLAMBA_SECURITY_SCRIPT_KEY}/a-cron_daily >> /var/log/cron.log 2>&1
