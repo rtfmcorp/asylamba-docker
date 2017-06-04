@@ -4,10 +4,8 @@ prod-install: prod-up prod-status
 
 prod-upgrade:
 
-	docker-compose -f production.yml stop
 	docker pull asylamba/game
-	docker-compose -f production.yml rm game
-	docker-compose -f production.yml up -d
+	docker-compose -f production.yml up -d game
 
 up:
 
