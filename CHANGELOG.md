@@ -2,6 +2,9 @@
 ### Added
 - Environment variables file
 
+### Removed
+- Volumes for the game in production environment
+
 ## [0.1.5] - 2017-05-14
 ### Added
 - Game logs in the volumes
