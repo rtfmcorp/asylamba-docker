@@ -35,18 +35,58 @@ Here is the documentation about the values :
 # All variables prefixed with ASYLAMBA_ will be used as parameters in the game container
 # For more informations, please refer to the game documentation
 
+# The ID which identifies the game server to the main portal API
+ASYLAMBA_SERVER_ID=0
 # The DNS of the game, for static files and Ajax calls
 ASYLAMBA_SERVER_HOST=game.asylamba.local
 # The port of the game server. Please be sure it is an open port of the game container
 ASYLAMBA_SERVER_PORT=9999
+
+# The timeout for the socket listening, in seconds. It is the time the game is updated when no user request is performed.
+# Be aware that a low value will increase the CPU usage heavily
+ASYLAMBA_SERVER_CYCLE_TIMEOUT=20
+# Number of listening loops before cleaning the application (garbage collector, etc...)
+ASYLAMBA_SERVER_COLLECTION_CYCLES_NUMBER=25
+
+# The start time of the game server
+ASYLAMBA_SERVER_START_TIME='2017-05-29 20:00:00'
+# The roleplay "year" of the game server at its start
+ASYLAMBA_SEGMENT_SHIFT=650
+
 # The host of the database server. Could be an IP address
 ASYLAMBA_DATABASE_HOST=asylamba_mysql
-
 ASYLAMBA_DATABASE_NAME=asylamba_game
 ASYLAMBA_DATABASE_USER=root
 ASYLAMBA_DATABASE_PASSWORD=asylamba
-# Security key used in the admin URL. It must be changed in remote environments
-ASYLAMBA_SECURITY_KEY=123456
+# Admin credentials for the database. Used for admin scripts
+ASYLAMBA_DATABASE_ADMIN_USER=root
+ASYLAMBA_DATABASE_ADMIN_PASSWORD=asylamba
+
+# Number of task runners that the engine will launch
+ASYLAMBA_WORKER_SCALE=3
+# Timeout for the task runner socket listening, in seconds.
+# Be aware that a low value will increase the CPU usage heavily
+ASYLAMBA_WORKER_CYCLE_TIMEOUT=60
+# Number of listening loops before cleaning the task runner
+ASYLAMBA_WORKER_COLLECTION_CYCLES_NUMBER=5
+
+# The crypting key of the security component
+ASYLAMBA_SECURITY_IV=abcde
+# Security keys used to access admin views. It must be changed in remote environments
+ASYLAMBA_SECURITY_BUFFER_KEY=123456
+ASYLAMBA_SECURITY_SERVER_KEY=123456
+ASYLAMBA_SECURITY_SCRIPT_KEY=123456
+ASYLAMBA_SECURITY_API_KEY=123456
+
+# The environment mode. Behaviour between "dev" and "prod" is not the same for many game components.
+# For further information, read the game documentation
+ASYLAMBA_ENVIRONMENT=dev
+# When set to "enabled", the game will connect to the ASYLAMBA_GETOUT_ROOT API for certain actions such as registration
+ASYLAMBA_APIMODE=disabled
+# Path to the game root
+ASYLAMBA_APP_ROOT=/
+# Path to the logout location. It is also used for the moment as the API domain when APIMODE is enabled
+ASYLAMBA_GETOUT_ROOT=/buffer/
 
 # This is used to tell Nginx which virtual host it must enable
 NGINX_ENABLED_VHOST=asylamba.local,game.asylamba.local,asylamba-preprod.cloudapp.net,s14.asylamba.com
@@ -55,6 +95,7 @@ NGINX_ENABLED_VHOST=asylamba.local,game.asylamba.local,asylamba-preprod.cloudapp
 # Set it to true in remote environments, it will deploy the code contained in the new images you will push to production.
 DEPLOY_SOURCES=false
 
+# MySQL credentials used by the MySQL container
 MYSQL_DATABASES: asylamba_game
 MYSQL_ROOT_PASSWORD: asylamba
 MYSQL_HOST: localhost
@@ -84,6 +125,28 @@ To remove the containers (you would need to do it in case of strange problems or
 To see the containers status, use `docker-compose ps` or `make status` shortcut command.
 
 To see logs related to a container, use `docker logs [container name]` (eg. `docker logs asylamba_game`).
+
+### CLI
+
+The game container is used as a CLI, to launch commands such as PHPUnit or Gulp.
+
+You have two ways of accessing it, when the container is started :
+
+```sh
+docker exec -it asylamba_game /bin/bash
+```
+
+or the shortcut
+
+```sh
+make run
+```
+
+You are directly located to the game folder, where you can launch the available commands.
+
+#### PHPUnit
+
+Simply use ```phpunit``` to launch the game test suit.
 
 ### PhpMyAdmin
 
