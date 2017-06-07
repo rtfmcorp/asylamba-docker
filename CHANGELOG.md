@@ -1,6 +1,9 @@
 ## [Unreleased]
 ### Added
 - Environment variables file
+- PHPUnit in game container
+- Restart command for game container
+- Run command to connect the game container
 
 ### Removed
 - Volumes for the game in production environment
