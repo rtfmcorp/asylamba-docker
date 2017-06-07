@@ -9,13 +9,16 @@ COPY archives/asylamba_game.tar.gz /srv/archives/
 
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y libmcrypt-dev dos2unix cron \
-    && dos2unix /entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/* \
+    && apt-get install -y cron wget \
 
-    && docker-php-ext-install pdo pdo_mysql mcrypt \
+    && docker-php-ext-install pdo pdo_mysql \
 
     && ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
     && echo $TIMEZONE > /etc/timezone \
+
+    && wget https://phar.phpunit.de/phpunit-6.1.phar \
+    && chmod +x phpunit-6.1.phar \
+    && mv phpunit-6.1.phar /usr/bin/phpunit \
 
     && chmod a+x /entrypoint.sh && chown root:root /entrypoint.sh \
 
@@ -29,6 +32,8 @@ RUN apt-get update \
     && mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so \
     && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://asylamba_blackfire:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini
 
+
+WORKDIR /srv/apps/asylamba-game
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD cron && php /srv/apps/asylamba-game/index.php
