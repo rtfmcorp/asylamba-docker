@@ -32,6 +32,8 @@ RUN apt-get update \
     && mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so \
     && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://asylamba_blackfire:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini
 
+
+WORKDIR /srv/apps/asylamba-game
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD cron && php /srv/apps/asylamba-game/index.php
