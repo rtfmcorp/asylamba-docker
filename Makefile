@@ -15,6 +15,18 @@ prod-up:
 
 	docker-compose -f production.yml up -d
 
+restart:
+
+	docker-compose stop game && docker-compose up -d game
+
+prod-restart:
+
+	docker-compose -f production.yml stop game && docker-compose -f production.yml up -d game
+
+run:
+
+	docker exec -it asylamba_game /bin/bash
+
 stop:
 
 	docker-compose stop
