@@ -6,8 +6,7 @@ if [ $DEPLOY_SOURCES == true ]; then
 fi
 
 if [ ! -d "/srv/apps/asylamba-game/vendor" ]; then
-    cd /srv/apps/asylamba-game
-    composer install
+    composer install -d /srv/apps/asylamba-game
 fi
 
 exec "$@"

@@ -1,4 +1,4 @@
-## [Unreleased]
+## [0.2.2] - 2017-06-12
 ### Fixed
 - Set zip and unzip commands for the game container
 - Fix MySQL container environment variables
