@@ -1,3 +1,6 @@
+## [Unreleased]
+- Compress game sources at first build
+
 ## [0.2.0] - 2017-06-11
 ### Added
 - Environment variables file

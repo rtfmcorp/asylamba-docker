@@ -45,6 +45,7 @@ prod-rm:
 
 build:
 
+	tar -C volumes/apps -cvzf applications/asylamba-game/archives/asylamba_game.tar.gz asylamba-game --exclude .git --exclude *.log
 	docker-compose build
 
 status:

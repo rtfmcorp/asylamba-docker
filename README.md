@@ -103,11 +103,27 @@ MYSQL_USER: asylamba
 MYSQL_PASSWORD: asylamba
 ```
 
+Then you have to clone the game sources. It must be located in the ```volumes/apps/asylamba-game``` folder.
+
+**Please note that the following command will clone the main repository**.
+
+If you want to work for the game, you must fork it first, and then clone your fork.
+
+```sh
+cd volumes/apps
+git clone git@github.com:rtfmcorp/asylamba-game.git
+```
+
 ## Usage
 
 To make the containers run, you can use the following commands :
 
+**Please not that the ``tar`` command must be executed once to create an archive of the game.**
+This archive is mandatory to build the game container.
+Once the archive is here, you haven't to execute the ```tar``` command again.
+
 ```sh
+tar -C volumes/apps -cvzf applications/asylamba-game/archives/asylamba_game.tar.gz asylamba-game --exclude .git --exclude *.log
 docker-compose build
 docker-compose up -d
 ```
