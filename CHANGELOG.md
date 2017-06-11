@@ -1,5 +1,9 @@
 ## [Unreleased]
+### Added
 - Compress game sources at first build
+
+### Fixed
+- Add missing log folder
 
 ## [0.2.0] - 2017-06-11
 ### Added
