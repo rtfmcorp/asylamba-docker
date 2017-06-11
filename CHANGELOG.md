@@ -2,6 +2,9 @@
 ### Added
 - Environment variables file
 - PHPUnit in game container
+- Node 7.1 in game container
+- NPM 5.0.3 in game container
+- Gulp in game container
 - Restart command for game container
 - Run command to connect the game container
 

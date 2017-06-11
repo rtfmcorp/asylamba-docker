@@ -19,6 +19,12 @@ RUN apt-get update \
     && chmod +x phpunit-6.1.phar \
     && mv phpunit-6.1.phar /usr/bin/phpunit \
 
+    && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
+    && apt-get install -yq nodejs build-essential \
+
+    && npm install -g npm \
+    && npm install -g gulp-cli \
+
     && chmod a+x /entrypoint.sh && chown root:root /entrypoint.sh \
 
     && version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
