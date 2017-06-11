@@ -2,6 +2,7 @@
 ### Fixed
 - Set zip and unzip commands for the game container
 - Fix MySQL container environment variables
+- Fix composer install in production env
 
 ## [0.2.1] - 2017-06-11
 ### Added
