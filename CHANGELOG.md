@@ -1,4 +1,4 @@
-## [Unreleased]
+## [0.2.1] - 2017-06-11
 ### Added
 - Compress game sources at first build
 - Composer in game container
