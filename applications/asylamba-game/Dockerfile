@@ -25,6 +25,10 @@ RUN apt-get update \
     && npm install -g npm \
     && npm install -g gulp-cli \
 
+    && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/bin/ --filename=composer \
+    && php -r "unlink('composer-setup.php');" \
+
     && chmod a+x /entrypoint.sh && chown root:root /entrypoint.sh \
 
     && version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \

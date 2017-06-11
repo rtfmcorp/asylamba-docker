@@ -1,6 +1,7 @@
 ## [Unreleased]
 ### Added
 - Compress game sources at first build
+- Composer in game container
 
 ### Fixed
 - Add missing log folder
