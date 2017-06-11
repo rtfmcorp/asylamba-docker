@@ -8,7 +8,7 @@ COPY archives/asylamba_game.tar.gz /srv/archives/
 
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y wget \
+    && apt-get install -y wget zip unzip \
 
     && docker-php-ext-install pdo pdo_mysql \
 

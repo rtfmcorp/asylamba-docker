@@ -1,3 +1,7 @@
+## [Unreleased]
+### Fixed
+- Set zip and unzip commands for the game container
+
 ## [0.2.1] - 2017-06-11
 ### Added
 - Compress game sources at first build
