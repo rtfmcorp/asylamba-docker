@@ -5,4 +5,7 @@ if [ $DEPLOY_SOURCES == true ]; then
     tar xf /srv/archives/asylamba_game.tar.gz -C /srv/apps/
 fi
 
+cd /srv/apps/asylamba-game
+composer install
+
 exec "$@"

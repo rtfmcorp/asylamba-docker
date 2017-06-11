@@ -2,6 +2,7 @@
 ### Added
 - Compress game sources at first build
 - Composer in game container
+- Composer install at game container launch
 
 ### Fixed
 - Add missing log folder
