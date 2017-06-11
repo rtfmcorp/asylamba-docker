@@ -3,13 +3,12 @@ MAINTAINER Axel Venet <kern046@gmail.com>
 
 ENV TIMEZONE=Europe/Paris
 
-COPY ranking_cron /etc/cron.d/ranking_cron
 COPY docker-entrypoint.sh /entrypoint.sh
 COPY archives/asylamba_game.tar.gz /srv/archives/
 
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y cron wget \
+    && apt-get install -y wget \
 
     && docker-php-ext-install pdo pdo_mysql \
 
@@ -22,10 +21,6 @@ RUN apt-get update \
 
     && chmod a+x /entrypoint.sh && chown root:root /entrypoint.sh \
 
-    && chmod 0644 /etc/cron.d/ranking_cron \
-    && touch /var/log/cron.log \
-    && /usr/bin/crontab /etc/cron.d/ranking_cron \
-
     && version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
     && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp \
@@ -36,4 +31,4 @@ RUN apt-get update \
 WORKDIR /srv/apps/asylamba-game
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD cron && php /srv/apps/asylamba-game/index.php
+CMD php /srv/apps/asylamba-game/index.php
