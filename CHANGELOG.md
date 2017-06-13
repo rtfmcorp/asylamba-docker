@@ -1,3 +1,8 @@
+## [Unreleased]
+### Fixed
+- Nginx access to game static files
+- CWD issue in game container entrypoint
+
 ## [0.2.2] - 2017-06-12
 ### Fixed
 - Set zip and unzip commands for the game container
