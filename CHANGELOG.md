@@ -2,6 +2,7 @@
 ### Fixed
 - Nginx access to game static files
 - CWD issue in game container entrypoint
+- Default IV length
 
 ## [0.2.2] - 2017-06-12
 ### Fixed
