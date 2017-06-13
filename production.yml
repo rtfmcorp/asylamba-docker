@@ -13,6 +13,7 @@ services:
         env_file:
             - asylamba.env
         volumes:
+            - "./volumes/apps:/srv/apps"
             - "./volumes/logs/game:/srv/logs"
         ports:
             - "9999:9999"
@@ -53,6 +54,7 @@ services:
             - "asylamba-preprod.cloudapp.net:127.0.0.1"
             - "s14.asylamba.com:127.0.0.1"
         volumes:
+            - "./volumes/apps:/srv/apps"
             - "./volumes/html:/usr/share/nginx/html"
             - "./volumes/logs/nginx:/var/log/nginx"
         networks:
