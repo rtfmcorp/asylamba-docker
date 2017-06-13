@@ -1,4 +1,4 @@
-## [Unreleased]
+## [0.2.3] - 2017-06-13
 ### Fixed
 - Nginx access to game static files
 - CWD issue in game container entrypoint
