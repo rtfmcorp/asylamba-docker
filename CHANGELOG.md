@@ -1,3 +1,8 @@
+## [Unreleased]
+### Added
+- Redis container
+- Redis commander container
+
 ## [0.2.3] - 2017-06-13
 ### Fixed
 - Nginx access to game static files

@@ -92,3 +92,24 @@ services:
         ports:
             - "443:443"
             - "80:80"
+
+    redis:
+        container_name: asylamba_redis
+        image: redis
+        env_file:
+            - asylamba.env
+        networks:
+            asylamba:
+                ipv4_address: 172.20.0.7
+        ports:
+            - "6379:6379"
+
+    redisCommander:
+        container_name: asylamba_redis_commander
+        image: tenstartups/redis-commander
+        command: --redis-host redis
+        networks:
+            asylamba:
+                ipv4_address: 172.20.0.8
+        ports:
+            - "8081:8081"
