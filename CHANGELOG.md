@@ -1,4 +1,4 @@
-## [Unreleased]
+## [0.3.0] - 2017-07-21
 ### Added
 - Redis container
 - Redis commander container
