@@ -11,6 +11,9 @@ RUN apt-get update \
     && apt-get install -y wget zip unzip \
 
     && docker-php-ext-install pdo pdo_mysql \
+    && pecl install -o -f redis \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable redis \
 
     && ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
     && echo $TIMEZONE > /etc/timezone \
