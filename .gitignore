@@ -6,3 +6,4 @@ volumes/mysql/*
 applications/asylamba-game/archives/*
 !applications/asylamba-game/archives/.gitkeep
 asylamba.env
+.env
