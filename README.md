@@ -21,9 +21,16 @@ git clone git@github.com:rtfmcorp/asylamba-docker.git
 cd asylamba-docker
 ```
 
-Now you have to copy the dist file for environment variables. This environment variables contain sensitive informations about security aspects of the game, like database access or game admin scripts access.
+Copy the environment file containing environment variables for Docker Compose, and configure the values:
 
+```sh
+cp .env.dist .env
+nano .env
 ```
+
+Now you have to copy the dist file for containers environment variables. This environment variables contain sensitive informations about security aspects of the game, like database access or game admin scripts access.
+
+```sh
 cp asylamba.dist.env asylamba.env
 ```
 
@@ -77,6 +84,11 @@ ASYLAMBA_SECURITY_BUFFER_KEY=123456
 ASYLAMBA_SECURITY_SERVER_KEY=123456
 ASYLAMBA_SECURITY_SCRIPT_KEY=123456
 ASYLAMBA_SECURITY_API_KEY=123456
+
+# Redis configuration
+ASYLAMBA_REDIS_HOST=asylamba_redis
+ASYLAMBA_REDIS_PORT=6379
+ASYLAMBA_REDIS_TIMEOUT=1.5
 
 # The environment mode. Behaviour between "dev" and "prod" is not the same for many game components.
 # For further information, read the game documentation
@@ -171,6 +183,14 @@ To access PhpMyAdmin, run your containers and then access to `127.0.0.1:8082` in
 The root credentials are `root:asylamba` ("asylamba" is the password).
 
 The other available user is `asylamba:asylamba`.
+
+### Redis
+
+A Redis Commander interface is available in dev environment.
+
+You can use it to view the Redis stored items.
+
+The interface is available at the ``8081`` port.
 
 ### Applications
 
