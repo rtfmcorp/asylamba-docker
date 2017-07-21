@@ -2,6 +2,8 @@
 ### Added
 - Redis container
 - Redis commander container
+- Redis extension in game container
+- Production configuration for Redis containers
 
 ## [0.2.3] - 2017-06-13
 ### Fixed
