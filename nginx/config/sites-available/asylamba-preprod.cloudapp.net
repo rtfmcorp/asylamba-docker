@@ -8,7 +8,7 @@ server {
 
   merge_slashes on;
 
-  location ~ \.(css|js|png|jpg) {
+  location ~ \.(css|js|png|jpg|svg) {
     root /srv/apps/asylamba-game;
   }
 
