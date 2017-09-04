@@ -10,7 +10,7 @@ RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y wget zip unzip \
 
-    && docker-php-ext-install pdo pdo_mysql \
+    && docker-php-ext-install pdo pdo_mysql sockets \
     && pecl install -o -f redis \
     &&  rm -rf /tmp/pear \
     &&  docker-php-ext-enable redis \
