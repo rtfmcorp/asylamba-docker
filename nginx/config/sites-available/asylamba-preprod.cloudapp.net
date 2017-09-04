@@ -21,6 +21,8 @@ server {
         proxy_set_header        Connection "";
         proxy_buffering off;
         proxy_ignore_client_abort on;
+        proxy_read_timeout 7d;
+        proxy_send_timeout 7d;
   }
 
   location ~ /\.ht {
