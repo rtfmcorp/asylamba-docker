@@ -1,3 +1,8 @@
+## [0.3.1] - 2017-09-06
+### Added
+- Support of SVG images as static files
+- Support of Websocket frames
+
 ## [0.3.0] - 2017-07-21
 ### Added
 - Redis container
