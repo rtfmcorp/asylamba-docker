@@ -1,10 +1,10 @@
 server {
   listen 80;
 
-  server_name asylamba-preprod.cloudapp.net;
+  server_name preprod.asylamba.com;
 
-  access_log /var/log/nginx/asylamba_game.access.log;
-  error_log /var/log/nginx/asylamba_game.error.log;
+  access_log /var/log/nginx/asylamba_preprod.access.log;
+  error_log /var/log/nginx/asylamba_preprod.error.log;
 
   merge_slashes on;
 

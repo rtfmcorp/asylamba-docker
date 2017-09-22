@@ -51,7 +51,7 @@ services:
         env_file:
             - asylamba.env
         extra_hosts:
-            - "asylamba-preprod.cloudapp.net:127.0.0.1"
+            - "preprod.asylamba.com:127.0.0.1"
             - "s14.asylamba.com:127.0.0.1"
         volumes:
             - "./volumes/apps:/srv/apps"

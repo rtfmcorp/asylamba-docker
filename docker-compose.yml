@@ -79,7 +79,7 @@ services:
         extra_hosts:
             - "asylamba.local:127.0.0.1"
             - "game.asylamba.local:127.0.0.1"
-            - "asylamba-preprod.cloudapp.net:127.0.0.1"
+            - "preprod.asylamba.com:127.0.0.1"
             - "s14.asylamba.com:127.0.0.1"
         volumes:
             # applications
