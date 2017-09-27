@@ -45,7 +45,7 @@ Here is the documentation about the values :
 # The ID which identifies the game server to the main portal API
 ASYLAMBA_SERVER_ID=0
 # The DNS of the game, for static files and Ajax calls
-ASYLAMBA_SERVER_HOST=game.asylamba.local
+ASYLAMBA_SERVER_HOST=local.asylamba.com
 # The port of the game server. Please be sure it is an open port of the game container
 ASYLAMBA_SERVER_PORT=9999
 
@@ -130,7 +130,7 @@ git clone git@github.com:rtfmcorp/asylamba-game.git
 
 To make the containers run, you can use the following commands :
 
-**Please not that the ``tar`` command must be executed once to create an archive of the game.**
+**Please note that the ``tar`` command must be executed once to create an archive of the game.**
 This archive is mandatory to build the game container.
 Once the archive is here, you haven't to execute the ```tar``` command again.
 
@@ -194,6 +194,18 @@ The interface is available at the ``8081`` port.
 
 ### Applications
 
+First, we need to create the SSL certificates to enable HTTPS for the game.
+
+At the Docker project root, run the following command :
+
+```sh
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout volumes/ssl/private/nginx-selfsigned.key -out volumes/ssl/certs/nginx-selfsigned.crt
+```
+
+Fill the required informations to generate the files, which will be injected in the Nginx container.
+
+If your Nginx container was up before the generation, restart it.
+
 To install the game, run the following procedure :
 
 ```sh
@@ -201,15 +213,12 @@ cd volumes/apps
 git clone git@github.com:rtfmcorp/asylamba-game.git
 ```
 
-You can access the game with `127.0.0.1` in your browser.
-
-If you want to use hostnames, the default ones are `http://game.asylamba.local` and `http://asylamba.local`.
+You can access the game with the hostname `https://local.asylamba.com`.
 
 To enable it on your computer and access it with your browser, you must add these lines to your `hosts` file :
 
 ```
-127.0.0.1 game.asylamba.local
-127.0.0.1 asylamba.local
+127.0.0.1 local.asylamba.com
 ```
 
 This file is located in `C:\Windows\System32\drivers\etc\hosts` on Windows and `/etc/hosts` on Linux.
@@ -225,17 +234,19 @@ To perform this, you can use two methods. We assume in this example that you wan
 **The short way**
 
 ```
-make version=1.1.12 build-game
+make build-game
 ```
 
 **The less short way**
 
 ```
+$(eval version = $(shell git -C volumes/apps/asylamba-game describe --tags))
 tar -C volumes/apps -cvzf applications/asylamba-game/archives/asylamba_game.tar.gz asylamba-game --exclude .git --exclude *.log
 docker-compose build game
-docker tag asylamba_game asylamba/game:1.1.12
-docker tag asylamba_game asylamba/game:latest
-docker push docker.io/asylamba/game:1.1.12
+docker tag asylamba/game asylamba/game:$(version)
+docker tag asylamba/game asylamba/game:latest
+docker push docker.io/asylamba/game:$(version)
+docker push docker.io/asylamba/game:latest
 ```
 
 An explaination of the process is needed.
