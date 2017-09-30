@@ -1,7 +1,7 @@
 server {
   listen 80;
 
-  server_name preprod.asylamba.com;
+  server_name preprod.asylamba.com asylamba-game.developtech.fr;
 
   access_log /var/log/nginx/asylamba_preprod.access.log;
   error_log /var/log/nginx/asylamba_preprod.error.log;
