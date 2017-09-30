@@ -51,9 +51,11 @@ services:
         env_file:
             - asylamba.env
         extra_hosts:
+            - "asylamba-game.developtech.fr:127.0.0.1"
             - "preprod.asylamba.com:127.0.0.1"
             - "s14.asylamba.com:127.0.0.1"
         volumes:
+            - "./volumes/ssl:/etc/letsencrypt"
             - "./volumes/apps:/srv/apps"
             - "./volumes/html:/usr/share/nginx/html"
             - "./volumes/logs/nginx:/var/log/nginx"
@@ -73,3 +75,4 @@ services:
             - asylamba
         ports:
             - "6379:6379"
+d

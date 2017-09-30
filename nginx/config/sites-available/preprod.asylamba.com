@@ -1,7 +1,20 @@
 server {
   listen 80;
+  listen [::]:80;
 
   server_name preprod.asylamba.com asylamba-game.developtech.fr;
+
+  return 302 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+
+    ssl_certificate /etc/letsencrypt/live/asylamba-game.developtech.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/asylamba-game.developtech.fr/privkey.pem;
+
+    server_name preprod.asylamba.com asylamba-game.developtech.fr;
 
   access_log /var/log/nginx/asylamba_preprod.access.log;
   error_log /var/log/nginx/asylamba_preprod.error.log;
