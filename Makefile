@@ -67,3 +67,13 @@ build-game:
 	docker tag asylamba/game asylamba/game:latest
 	docker push docker.io/asylamba/game:$(version)
 	docker push docker.io/asylamba/game:latest
+
+ssl-root:
+
+	openssl genrsa -des3 -out volumes/ssl/rootCA.key 2048
+	openssl req -x509 -new -nodes -key volumes/ssl/rootCA.key -sha256 -days 1024 -out volumes/ssl/rootCA.pem
+
+ssl-cert:
+
+	openssl req -new -sha256 -nodes -out volumes/ssl/server.csr -newkey rsa:2048 -keyout volumes/ssl/server.key -config nginx/config/ssl/local.asylamba.com.conf
+	openssl x509 -req -in volumes/ssl/server.csr -CA volumes/ssl/rootCA.pem -CAkey volumes/ssl/rootCA.key -CAcreateserial -out volumes/ssl/server.crt -days 500 -sha256 -extfile nginx/config/ssl/v3.ext
