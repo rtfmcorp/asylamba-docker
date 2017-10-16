@@ -47,10 +47,12 @@ services:
         container_name: asylamba_nginx
         image: asylamba/nginx
         depends_on:
+            - bot
             - game
         env_file:
             - asylamba.env
         extra_hosts:
+            - "chickenbot.asylamba.com:127.0.0.1"
             - "preprod.asylamba.com:127.0.0.1"
             - "s14.asylamba.com:127.0.0.1"
         volumes:
@@ -60,6 +62,7 @@ services:
             - "./volumes/logs/nginx:/var/log/nginx"
         networks:
             - asylamba
+            - chickenbot
         ports:
             - "443:443"
             - "80:80"
@@ -72,13 +75,12 @@ services:
             - asylamba.env
         networks:
             - asylamba
-            - chickenbot
         ports:
             - "6379:6379"
 
     bot:
         container_name: chicken_bot
-        build: asylamba/chickenbot
+        image: asylamba/chickenbot
         working_dir: /srv/app
         env_file:
           - asylamba.env
