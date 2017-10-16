@@ -17,8 +17,6 @@ services:
         volumes:
             - "./volumes/apps:/srv/apps"
             - "./volumes/logs/game:/srv/logs"
-        ports:
-            - "9999:9999"
         networks:
             - asylamba
 
@@ -74,6 +72,7 @@ services:
             - asylamba.env
         networks:
             - asylamba
+            - chickenbot
         ports:
             - "6379:6379"
 
@@ -85,5 +84,3 @@ services:
           - asylamba.env
         networks:
           - chickenbot
-        ports:
-          - "8000:80"
