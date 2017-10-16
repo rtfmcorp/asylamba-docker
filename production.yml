@@ -2,6 +2,8 @@ version: "3"
 networks:
     asylamba:
         driver: bridge
+    chickenbot:
+        driver: bridge
 
 services:
     game:
@@ -51,7 +53,6 @@ services:
         env_file:
             - asylamba.env
         extra_hosts:
-            - "asylamba-game.developtech.fr:127.0.0.1"
             - "preprod.asylamba.com:127.0.0.1"
             - "s14.asylamba.com:127.0.0.1"
         volumes:
@@ -75,4 +76,14 @@ services:
             - asylamba
         ports:
             - "6379:6379"
-d
+
+    bot:
+        container_name: chicken_bot
+        build: asylamba/chickenbot
+        working_dir: /srv/app
+        env_file:
+          - asylamba.env
+        networks:
+          - chickenbot
+        ports:
+          - "8000:80"
