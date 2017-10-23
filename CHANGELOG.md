@@ -1,6 +1,20 @@
-## [Unreleased]
+## [1.0.0]
+### Added
+- TLS certificates support in Nginx container
+- Stripe API keys in environment variables
+- Lets encrypt tools in Nginx container
+- OpenSSL configuration for local SSL certificates forging
+- Shortcut command to generate root certificate authority
+- Shortcut command to generate security certificates
+- Proxy request header containing user request scheme
+- Chickenbot container in production environment
+- Chickenbot virtual host for production environment
+- MongoDB container
+- Feedback management API container
+
 ### Changed
 - Pre-production DNS is now preprod.asylamba.com
+- Local DNS is now local.asylamba.com
 
 ## [0.3.1] - 2017-09-06
 ### Added
