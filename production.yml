@@ -4,6 +4,8 @@ networks:
         driver: bridge
     chickenbot:
         driver: bridge
+    mongo:
+        driver: bridge
 
 services:
     game:
@@ -86,3 +88,18 @@ services:
           - asylamba.env
         networks:
           - chickenbot
+
+    mongodb:
+        container_name: asylamba_mongodb
+        image: mongo
+        networks:
+            - mongo
+
+    feedback-manager:
+        container_name: asylamba_feedback_manager
+        image: citadeltechnologies/feedback-manager
+        env_file:
+            - asylamba.env
+        networks:
+            - asylamba
+            - mongo
