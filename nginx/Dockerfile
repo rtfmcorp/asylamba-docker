@@ -7,10 +7,9 @@ COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN mkdir -p /etc/nginx/sites-enabled \
     && chmod a+x /entrypoint.sh && chown root:root /entrypoint.sh \
-    && apt-get update \
-    && apt-get upgrade -y --force-yes \
-    && apt-get install -y dos2unix \
-    && dos2unix /entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
+    && apt-get update -y \
+    && apt-get install -y certbot \
+    && apt-get upgrade -y
 
 ENTRYPOINT ["/entrypoint.sh"]
 

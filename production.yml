@@ -2,6 +2,10 @@ version: "3"
 networks:
     asylamba:
         driver: bridge
+    chickenbot:
+        driver: bridge
+    mongo:
+        driver: bridge
 
 services:
     game:
@@ -15,8 +19,6 @@ services:
         volumes:
             - "./volumes/apps:/srv/apps"
             - "./volumes/logs/game:/srv/logs"
-        ports:
-            - "9999:9999"
         networks:
             - asylamba
 
@@ -47,18 +49,22 @@ services:
         container_name: asylamba_nginx
         image: asylamba/nginx
         depends_on:
+            - bot
             - game
         env_file:
             - asylamba.env
         extra_hosts:
-            - "asylamba-preprod.cloudapp.net:127.0.0.1"
+            - "chickenbot.asylamba.com:127.0.0.1"
+            - "preprod.asylamba.com:127.0.0.1"
             - "s14.asylamba.com:127.0.0.1"
         volumes:
+            - "./volumes/ssl:/etc/letsencrypt"
             - "./volumes/apps:/srv/apps"
             - "./volumes/html:/usr/share/nginx/html"
             - "./volumes/logs/nginx:/var/log/nginx"
         networks:
             - asylamba
+            - chickenbot
         ports:
             - "443:443"
             - "80:80"
@@ -73,3 +79,27 @@ services:
             - asylamba
         ports:
             - "6379:6379"
+
+    bot:
+        container_name: chicken_bot
+        image: asylamba/chickenbot
+        working_dir: /srv/app
+        env_file:
+          - asylamba.env
+        networks:
+          - chickenbot
+
+    mongodb:
+        container_name: asylamba_mongodb
+        image: mongo
+        networks:
+            - mongo
+
+    feedback-manager:
+        container_name: asylamba_feedback_manager
+        image: citadeltechnologies/feedback-manager
+        env_file:
+            - asylamba.env
+        networks:
+            - asylamba
+            - mongo

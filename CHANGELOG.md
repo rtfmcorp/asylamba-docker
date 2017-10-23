@@ -1,3 +1,7 @@
+## [Unreleased]
+### Changed
+- Pre-production DNS is now preprod.asylamba.com
+
 ## [0.3.1] - 2017-09-06
 ### Added
 - Support of SVG images as static files
