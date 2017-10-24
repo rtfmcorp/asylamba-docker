@@ -8,7 +8,10 @@ COPY archives/asylamba_game.tar.gz /srv/archives/
 
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y wget zip unzip \
+    && apt-get install -y wget zip unzip dos2unix \
+
+    && dos2unix /entrypoint.sh \
+    && apt-get --purge remove -y dos2unix \
 
     && docker-php-ext-install pdo pdo_mysql sockets \
     && pecl install -o -f redis \
